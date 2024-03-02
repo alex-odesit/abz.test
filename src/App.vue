@@ -3,6 +3,7 @@
     <Header />
     <Offer />
     <Users />
+    <CrateUser />
   </div>
 </template>
 
@@ -11,10 +12,11 @@ import { defineComponent } from "vue";
 import Header from "@/components/Header.vue";
 import Offer from "@/components/Offer.vue";
 import Users from "@/components/Users.vue";
+import CrateUser from "@/components/CrateUser.vue";
 
 export default defineComponent({
   name: "App",
-  components: { Users, Offer, Header },
+  components: { CrateUser, Users, Offer, Header },
 });
 </script>
 
