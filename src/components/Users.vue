@@ -10,7 +10,7 @@
         </template>
       </div>
     </div>
-    <Button>Show more</Button>
+    <Button v-if="!isLastPage" @button-click="requestUsers">Show more</Button>
   </section>
 </template>
 
@@ -19,57 +19,34 @@ import { defineComponent } from "vue";
 import { IUser } from "@/interfaces/IUser";
 import User from "@/components/items/User.vue";
 import Button from "@/components/ui/Button.vue";
+import { Api } from "@/api/Api";
 
 type data = {
   users: IUser[];
+  page: number;
+  isLastPage: boolean;
 };
 
 export default defineComponent({
   name: "Users",
   components: { Button, User },
+  mounted() {
+    this.requestUsers();
+  },
+  methods: {
+    async requestUsers() {
+      const users = await Api.get(`users?page=${this.page}&count=6`);
+      if (users.success) {
+        this.users = [...this.users, ...users.users];
+        if (users.total_pages != this.page) this.page++;
+        else this.isLastPage = true;
+      }
+    },
+  },
   data: (): data => ({
-    users: [
-      {
-        id: "30",
-        name: "Angel",
-        email: "angel.williams@example.com",
-        phone: "+380496540023",
-        position: "Designer",
-        position_id: "4",
-        registration_timestamp: 1537777441,
-        photo: "https://www.imgonline.com.ua/examples/bee-on-daisy.jpg",
-      },
-      {
-        id: "3320",
-        name: "Angel",
-        email: "angel.williams@example.com",
-        phone: "+380496540023",
-        position: "Designer",
-        position_id: "4",
-        registration_timestamp: 1537777441,
-        photo: "https://www.imgonline.com.ua/examples/bee-on-daisy.jpg",
-      },
-      {
-        id: "32",
-        name: "Angel",
-        email: "angel.williams@example.com",
-        phone: "+380496540023",
-        position: "Designer",
-        position_id: "4",
-        registration_timestamp: 1537777441,
-        photo: "https://www.imgonline.com.ua/examples/bee-on-daisy.jpg",
-      },
-      {
-        id: "33",
-        name: "Angel",
-        email: "angel.williams@example.com",
-        phone: "+380496540023",
-        position: "Designer",
-        position_id: "4",
-        registration_timestamp: 1537777441,
-        photo: "https://www.imgonline.com.ua/examples/bee-on-daisy.jpg",
-      },
-    ],
+    users: [],
+    page: 1,
+    isLastPage: false,
   }),
 });
 </script>
@@ -82,7 +59,6 @@ export default defineComponent({
   margin-top: 50px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   margin: 50px -10px 0 -14px;
 }
 

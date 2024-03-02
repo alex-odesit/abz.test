@@ -30,6 +30,8 @@ export default defineComponent({
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;
+  word-break: break-all;
+  height: 100%;
 }
 
 .user__photo {
