@@ -60,7 +60,7 @@
           >Sing Up</Button
         >
       </form>
-      <div class="success">
+      <div v-if="isSingUp" class="success">
         <img src="@/assets/images/success-image.svg" alt="success" />
       </div>
     </div>
@@ -116,7 +116,7 @@ export default defineComponent({
     },
     fileLabel: "Upload your photo",
     positions: ["Frontend developer", "Backend developer", "Designer", "QA"],
-    isSingUp: true,
+    isSingUp: false,
   }),
 });
 </script>

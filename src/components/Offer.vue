@@ -31,6 +31,9 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
+.wrapper {
+  margin-top: 60px;
+}
 .offer_back {
   max-width: 1170px;
   margin: 0 auto;
