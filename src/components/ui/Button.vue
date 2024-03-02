@@ -12,11 +12,10 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .button {
-  padding: 4px 23px;
+  padding: 4px 21px;
   transition: all 0.3s ease;
   background: #f4e041;
   border-radius: 80px;
-  //cursor: pointer;
   text-transform: none;
   &:hover {
     background: #ffe302;

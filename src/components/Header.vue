@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <header class="wrapper">
     <div class="container">
       <nav class="nav-bar">
         <div class="header__image">
@@ -12,7 +12,7 @@
         </div>
       </nav>
     </div>
-  </div>
+  </header>
 </template>
 
 <script lang="ts">
@@ -31,6 +31,10 @@ export default defineComponent({
   align-items: center;
   justify-content: space-between;
   padding: 13px 0;
+  @media (max-width: 1024px) {
+    max-width: 93%;
+    margin: 0 auto;
+  }
 }
 
 .header__buttons {

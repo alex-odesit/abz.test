@@ -1,16 +1,18 @@
 <template>
   <div id="app">
-    <Header></Header>
+    <Header />
+    <Offer />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import Header from "@/components/Header.vue";
+import Offer from "@/components/Offer.vue";
 
 export default defineComponent({
   name: "App",
-  components: { Header },
+  components: { Offer, Header },
 });
 </script>
 

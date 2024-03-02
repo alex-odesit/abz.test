@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital@0;1&display=swap');
 // default styles for all project
+$max_width: 1170px;
+
+
 * {
   font-size: 16px;
   font-family: "Nunito", sans-serif;
@@ -16,12 +19,12 @@
 }
 
 .container{
-  max-width: 1170px;
+  max-width: $max_width;
   margin: 0 auto;
 }
 
-@media (max-width: 1124px)  {
+@media (max-width: $max_width)  {
   .container{
-    max-width: 90%;
+    max-width: 91%;
   }
 }
