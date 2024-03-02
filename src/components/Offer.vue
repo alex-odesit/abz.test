@@ -1,18 +1,20 @@
 <template>
   <section class="wrapper">
-    <div class="container">
-      <div class="offer">
-        <h1 class="offer__title title">
-          Test assignment for front-end developer
-        </h1>
-        <p class="offer__text">
-          What defines a good front-end developer is one that has skilled
-          knowledge of HTML, CSS, JS with a vast understanding of User design
-          thinking as they'll be building web interfaces with accessibility in
-          mind. They should also be excited to learn, as the world of Front-End
-          Development keeps evolving.
-        </p>
-        <Button>Sign up</Button>
+    <div class="offer_back">
+      <div class="container">
+        <div class="offer">
+          <h1 class="offer__title title">
+            Test assignment for front-end developer
+          </h1>
+          <p class="offer__text">
+            What defines a good front-end developer is one that has skilled
+            knowledge of HTML, CSS, JS with a vast understanding of User design
+            thinking as they'll be building web interfaces with accessibility in
+            mind. They should also be excited to learn, as the world of
+            Front-End Development keeps evolving.
+          </p>
+          <Button>Sign up</Button>
+        </div>
       </div>
     </div>
   </section>
@@ -29,7 +31,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-.wrapper {
+.offer_back {
   max-width: 1170px;
   margin: 0 auto;
   background: url("@/assets/images/offer_back.jpeg") no-repeat;

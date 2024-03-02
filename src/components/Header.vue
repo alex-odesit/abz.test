@@ -26,6 +26,9 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
+.wrapper {
+  background-color: #fff;
+}
 .nav-bar {
   display: flex;
   align-items: center;

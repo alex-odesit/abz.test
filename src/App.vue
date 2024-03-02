@@ -2,6 +2,7 @@
   <div id="app">
     <Header />
     <Offer />
+    <Users />
   </div>
 </template>
 
@@ -9,10 +10,11 @@
 import { defineComponent } from "vue";
 import Header from "@/components/Header.vue";
 import Offer from "@/components/Offer.vue";
+import Users from "@/components/Users.vue";
 
 export default defineComponent({
   name: "App",
-  components: { Offer, Header },
+  components: { Users, Offer, Header },
 });
 </script>
 
