@@ -33,11 +33,11 @@
             <label class="radio">
               <input
                 name="radio"
-                :value="position"
+                :value="position.id"
                 type="radio"
-                v-model="form.position"
+                v-model="form.position_id"
               />
-              <span>{{ position }}</span>
+              <span>{{ position.name }}</span>
             </label>
           </template>
         </div>
@@ -71,29 +71,37 @@
 import { defineComponent } from "vue";
 import Input from "@/components/ui/Input.vue";
 import Button from "@/components/ui/Button.vue";
+import { Api } from "@/api/Api";
+import { INewUser } from "@/interfaces/INewUser";
 
 type data = {
   fileLabel: string;
-  positions: string[];
-  form: any;
+  positions: { id: number; name: string }[];
+  form: INewUser;
   isSingUp: boolean;
 };
 
 export default defineComponent({
   name: "CrateUser",
   components: { Button, Input },
+  mounted() {
+    this.requestPositions();
+  },
   methods: {
+    async requestPositions() {
+      const data = await Api.get("positions");
+      if (data.success) this.positions = data.positions;
+    },
     async singUp(): Promise<any> {
-      this.isSingUp = true;
+      const data = await Api.post("users", this.form);
+      console.log(data);
+      if (data.ok) this.isSingUp = true;
     },
     handleFileChange(e: any) {
       try {
         const file = e.target.files[0];
         this.fileLabel = file.name;
-
-        const formData = new FormData();
-        formData.append("file", file);
-        this.form.file = formData;
+        this.form.photo = file;
       } catch (err) {
         console.error(err);
       }
@@ -111,11 +119,20 @@ export default defineComponent({
       email: "",
       phone: "",
       name: "",
-      position: "Frontend developer",
-      file: null,
+      position_id: 1,
+      photo: null,
     },
     fileLabel: "Upload your photo",
-    positions: ["Frontend developer", "Backend developer", "Designer", "QA"],
+    positions: [
+      {
+        id: 1,
+        name: "Security",
+      },
+      {
+        id: 2,
+        name: "Designer",
+      },
+    ],
     isSingUp: false,
   }),
 });
@@ -153,7 +170,7 @@ export default defineComponent({
         content: "";
         display: block;
         position: absolute;
-        top: 5px;
+        top: 3px;
         left: 0px;
         border-radius: 50%;
         margin-right: 5px;
@@ -170,7 +187,7 @@ export default defineComponent({
         background: #00bdd3;
         position: absolute;
         border-radius: 50%;
-        top: 10px;
+        top: 8px;
         left: 5px;
         opacity: 0;
         transform: scale(0, 0);

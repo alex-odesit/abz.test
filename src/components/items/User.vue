@@ -4,7 +4,7 @@
       <img :src="user.photo" alt="user-photo" />
     </div>
     <p class="user__name">{{ user.name }}</p>
-    <p class="user__position">{{ user.position }}</p>
+    <p class="user__position">{{ user.position_id }}</p>
     <p class="user__email">{{ user.email }}</p>
     <p class="user__phone">{{ user.phone }}</p>
   </div>
