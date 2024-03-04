@@ -56,7 +56,10 @@
             @change="handleFileChange"
           />
         </div>
-        <Button style="margin-top: 50px" :disabled="!isValidForm"
+        <Button
+          :is-loader="isLoader"
+          style="margin-top: 50px"
+          :disabled="!isValidForm"
           >Sing Up</Button
         >
       </form>
@@ -79,6 +82,7 @@ type data = {
   positions: { id: number; name: string }[];
   form: INewUser;
   isSingUp: boolean;
+  isLoader: boolean;
 };
 
 export default defineComponent({
@@ -93,9 +97,11 @@ export default defineComponent({
       if (data.success) this.positions = data.positions;
     },
     async singUp(): Promise<any> {
+      this.isLoader = true;
       const data = await Api.post("users", this.form);
       console.log(data);
       if (data.ok) this.isSingUp = true;
+      this.isLoader = false;
     },
     handleFileChange(e: any) {
       try {
@@ -134,6 +140,7 @@ export default defineComponent({
       },
     ],
     isSingUp: false,
+    isLoader: false,
   }),
 });
 </script>

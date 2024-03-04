@@ -10,7 +10,12 @@
         </template>
       </div>
     </div>
-    <Button v-if="!isLastPage" @button-click="requestUsers">Show more</Button>
+    <Button
+      :is-loader="isLoader"
+      v-if="!isLastPage"
+      @button-click="requestUsers"
+      >Show more</Button
+    >
   </section>
 </template>
 
@@ -25,6 +30,7 @@ type data = {
   users: IUser[];
   page: number;
   isLastPage: boolean;
+  isLoader: boolean;
 };
 
 export default defineComponent({
@@ -35,18 +41,21 @@ export default defineComponent({
   },
   methods: {
     async requestUsers() {
+      this.isLoader = true;
       const users = await Api.get(`users?page=${this.page}&count=6`);
       if (users.success) {
         this.users = [...this.users, ...users.users];
         if (users.total_pages != this.page) this.page++;
         else this.isLastPage = true;
       }
+      this.isLoader = false;
     },
   },
   data: (): data => ({
     users: [],
     page: 1,
     isLastPage: false,
+    isLoader: false,
   }),
 });
 </script>

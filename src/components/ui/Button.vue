@@ -1,13 +1,25 @@
 <template>
-  <button @click="$emit('buttonClick')" class="button"><slot></slot></button>
+  <button @click="$emit('buttonClick')" class="button">
+    <slot v-if="!isLoader"></slot>
+    <Loader v-if="isLoader" />
+  </button>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import Loader from "@/components/ui/Loader.vue";
 
 export default defineComponent({
   name: "Button",
+  components: { Loader },
   emits: ["buttonClick"],
+  props: {
+    isLoader: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+  },
 });
 </script>
 

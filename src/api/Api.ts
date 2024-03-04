@@ -4,17 +4,11 @@ class Api {
   private static token: string;
 
   static async registration(): Promise<any> {
-    const localToken = localStorage.getItem("token");
-    if (localToken) {
-      Api.token = JSON.parse(localToken);
-      return;
-    }
     const data = await fetch(
       "https://frontend-test-assignment-api.abz.agency/api/v1/token"
     ).then((res) => res.json());
     if (data.success) {
       Api.token = data.token;
-      localStorage.setItem("token", JSON.stringify(this.token));
     } else {
       throw console.error("Token is not received");
     }
